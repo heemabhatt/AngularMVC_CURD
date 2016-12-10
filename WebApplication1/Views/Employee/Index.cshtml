@@ -1,0 +1,71 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/MyApp.js"></script>
+    
+    <title>Index</title>
+</head>
+<body ng-app="MyApp" ng-controller="EmployeeCtrl">
+
+    <div id="divAddEmployee">
+        <table>
+            <tr>
+                <td>Enter name:</td>
+                <td>
+                    <input type="hidden" data-ng-model="employee.Id" />
+                    <input type="text" placeholder="Enter Employee Name" data-ng-model="employee.EmpName" required />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Enter Salary:
+                </td>
+                <td>
+                    <input type="number" placeholder="Enter annual Salary"  data-ng-model="employee.Salary" required />
+                </td>
+            </tr>
+            <tr>
+                <td>  Select Post:</td>
+                <td>
+                    <input type="text" placeholder="Enter Post" data-ng-model="employee.Post" required />
+                </td>
+
+
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="button" value="Submit" id="btnSave" data-ng-click="saveData(employee)" />
+                    <input type="button" value="Update" id="btnUpdate" data-ng-click="updateData(employee)" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br />
+    <br />
+    <div id="divEmployeeList">
+        <table title="List of Employees">
+            <tr>
+                <th>Name</th>
+                <th>Salary</th>
+                <th>Post</th>
+            </tr>
+            <tr ng-repeat="emp in employees">
+                <td>{{emp.EmpName}}</td>
+                <td>{{emp.Salary}}</td>
+                <td>{{emp.Post}}</td>
+                <td> <a href="#" class="updateLink" data-ng-click="selectEmployee(emp.Id)">Edit</a> </td>
+                <td><a href="#" data-ng-click="deleteEmployee(emp.Id)">Delete</a> </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
